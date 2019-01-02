@@ -1,0 +1,28 @@
+{% extends 'home/base.html' %}
+
+{%block body%}
+    <div class="container-fluid center">
+        <div class="jumbotron jumbotron-fluid">
+            <h1 class="display-4">Raven's Blog</h1>
+            <p class="lead">Share your knowledge let the world connect</p>
+            <hr class="my-4">
+            <div class="btn-group">
+                {%if user.is_authenticated%}
+                <a href="{% url 'addpost'%}" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Post</a>
+                {%else%}
+                <a href="{% url 'adduser'%}" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                {%endif%}
+                <a href="#" class="btn btn-lg btn-default">Download</a>    
+            </div>
+        </div>
+    </div>
+
+    <ul class="list-group">
+        {% for blog in blogs%}
+        <li class="list-group-item">
+            <h2><a href="{% url 'detail' blog.id %}">{{blog.title}}</a></h2>
+            <p>{{blog.publish}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

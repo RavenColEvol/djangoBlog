@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+
+    <form action="{%url 'addpost'%}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Done">
+    </form>
+    
+
+{% endblock%}
